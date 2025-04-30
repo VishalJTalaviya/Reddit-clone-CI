@@ -1,6 +1,7 @@
 The configuration process covers both Reddit-clone-CI and Reddit-clone-gitops-CD.
 =================================================================================================================================================================
-```[A] Let's use Terraform to create an EC2 instance for Jenkins, Docker and SonarQube
+```
+[A] Let's use Terraform to create an EC2 instance for Jenkins, Docker and SonarQube
 
 1--main.tf
 
