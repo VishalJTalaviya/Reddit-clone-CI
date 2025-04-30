@@ -1,6 +1,6 @@
 The configuration process covers both Reddit-clone-CI and Reddit-clone-gitops-CD.
-=============================================================================================================================================================================================================================
-[A] Let's use Terraform to create an EC2 instance for Jenkins, Docker and SonarQube
+=================================================================================================================================================================
+```[A] Let's use Terraform to create an EC2 instance for Jenkins, Docker and SonarQube
 
 1--main.tf
 
@@ -101,7 +101,7 @@ sudo apt-get install trivy -y
 4--
 terraform init, terraform plan, terraform apply -auto-approve
 
-=============================================================================================================================================================================================================================
+=======================================================================================================================================================================================
 Refer---https://archive.eksworkshop.com/intermediate/290_argocd/install/
 Refer--https://github.com/aws-samples/eks-workshop/issues/734
 
@@ -138,8 +138,9 @@ eksctl create cluster --name vishaltalaviya-cluster \
 
 5-- Verify Cluster with below command
 $ kubectl get nodes
-=============================================================================================================================================================================================================================
+==========================================================================================================================================================================================
 [C] Setup Monitoring for Kubernetes using Helm, Prometheus and Grafana Dashboard
+
 1 ) Install Helm Chart
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
 chmod 700 get_helm.sh
@@ -149,7 +150,7 @@ helm version
 2 )
 helm repo add stable https://charts.helm.sh/stable                    //add the Helm Stable Charts for your local client
 
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts                      //Add Prometheus Helm repo
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts                    //Add Prometheus Helm repo
 
 kubectl create namespace prometheus                    //Create Prometheus namespace
 
@@ -163,7 +164,7 @@ kubectl get svc -n prometheus        //check the services file (svc) of the Prom
 
 3 ) let’s expose Prometheus to the external world
 
-kubectl edit svc stable-kube-prometheus-sta-prometheus -n prometheus                 //change it from Cluster IP to LoadBalancer.change port & targetport to 9090, save and close
+kubectl edit svc stable-kube-prometheus-sta-prometheus -n prometheus               //change it from Cluster IP to LoadBalancer.change port & targetport to 9090, save and close
 
 kubectl get svc -n prometheus    //copy dns name of LB and browse with 9090
 
@@ -177,7 +178,7 @@ kubectl get secret --namespace prometheus stable-grafana -o jsonpath="{.data.adm
 
 5) Import dashboard - 15760 - Load - Select Prometheus  & Click Import. 
 6) Import dashboard - 12740 - Load - Select Prometheus  & Click Import. 
-=============================================================================================================================================================================================================================
+==============================================================================================================================================================================================
 Refer---https://argo-cd.readthedocs.io/en/stable/cli_installation/
 [D] ArgoCD Installation on Kubernetes Cluster and Add EKS Cluster to ArgoCD
 1 ) First, create a namespace
@@ -216,12 +217,12 @@ Refer---https://argo-cd.readthedocs.io/en/stable/cli_installation/
      $ argocd cluster add i-08b9d0ff0409f48e7@vishaltalaviya-cluster.ap-south-1.eksctl.io --name virtualtechbox-eks-cluster
      
 12 ) Now if you give command "$ argocd cluster list" you will get both the clusters EKS & AgoCD(in-cluster). This can be verified at ArgoCD Dashboard.
-=============================================================================================================================================================================================================================
+=========================================================================================================================================================================================
 [E] Verify the CI/CD Pipeline
 git config --global user.name "VishalJTalaviya"
 git config --global user.email "vishaltalaviya1510@gmail.com"
 git clone https://github.com/VishalJTalaviya/Reddit-clone-CI.git
-=============================================================================================================================================================================================================================
+=======================================================================================================================================================================================
 [F] Cleanup
 1--Delete namespace prometheus & argocd
 $ kubectl delete namespace prometheus  and $ kubectl delete namespace argocd
